@@ -1,3 +1,4 @@
+int rollTotal;
 void setup()
 {
   noLoop();
@@ -7,7 +8,7 @@ void setup()
 void draw()
 {
   background(200);
-
+  rollTotal = 0;
   for(int y = 50; y <= 175; y += 125)
   {
     for(int x = 50; x <= 300; x += 125)
@@ -17,6 +18,9 @@ void draw()
       one.roll();
     }
   }
+      fill(0);
+      textSize(25);
+      text("Your total is " + rollTotal, 150, 400);
 }
 void mousePressed()
 {
@@ -27,14 +31,18 @@ class Die
 {
   int dieX, dieY;
   int value;
+  
   int probabilityColor = (int)(Math.random() * 2); 
   Die(int x, int y) 
   {
     roll();
     dieX = x;
     dieY = y;
+    
   }
-
+  
+    
+    
 
   void roll()
   {
@@ -43,7 +51,6 @@ class Die
   void show()
   {
     
-
     if(probabilityColor == 0)
     {
       fill(0);
@@ -54,7 +61,10 @@ class Die
 
     
     rect(dieX, dieY, 100, 100, 10);
+    fill(255, 0, 0);
 
+
+    
     if(probabilityColor == 1)
     {
       fill(0);
@@ -67,19 +77,22 @@ class Die
 
     if(value == 1)
     {
-      
+   
       ellipse(dieX + 50, dieY + 50, 15, 15);
+      rollTotal += 1;
     } else if( value == 2)
     {
       
       ellipse(dieX + 25, dieY + 25, 15, 15);
       ellipse(dieX + 75, dieY + 75, 15, 15);
+      rollTotal += 2;
     } else if(value == 3)
     {
       
       ellipse(dieX + 50, dieY + 50, 15, 15);
       ellipse(dieX + 25, dieY + 25, 15, 15);
       ellipse(dieX + 75, dieY + 75, 15, 15);
+      rollTotal += 3;
 
     } else if(value == 4)
     {
@@ -88,6 +101,8 @@ class Die
       ellipse(dieX + 75, dieY + 25, 15, 15);
       ellipse(dieX + 25, dieY + 75, 15, 15);
       ellipse(dieX + 75, dieY + 75, 15, 15);
+      rollTotal += 4;
+      
     } else if(value == 5) 
     {
       
@@ -96,6 +111,8 @@ class Die
       ellipse(dieX + 25, dieY + 75, 15, 15);
       ellipse(dieX + 75, dieY + 75, 15, 15);
       ellipse(dieX + 50, dieY + 50, 15, 15);
+      rollTotal += 5;
+      
     } else if(value == 6)
     {
       
@@ -105,6 +122,7 @@ class Die
       ellipse(dieX + 75, dieY + 75, 15, 15);
       ellipse(dieX + 25, dieY + 50, 15, 15);
       ellipse(dieX + 75, dieY + 50, 15, 15);
+      rollTotal += 6;
     } 
   }
 }
